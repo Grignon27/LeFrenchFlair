@@ -164,51 +164,6 @@
             opacity: 0;
         }
 
-        /* --- HERO SKILL BOX HOVER TOOLTIPS --- */
-        /* Tooltip styling for skill boxes on hover in normal (non-edit) mode */
-        .skill-box {
-            position: relative;
-        }
-
-        .skill-tooltip {
-            visibility: hidden;
-            width: 250px;
-            background-color: rgba(26, 43, 76, 0.95);
-            color: #fbf9f6;
-            text-align: center;
-            border-radius: 8px;
-            padding: 12px;
-            position: absolute;
-            z-index: 30;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -125px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 14px;
-            line-height: 1.5;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(226, 84, 43, 0.3);
-            pointer-events: none;
-        }
-
-        /* Tooltip arrow */
-        .skill-tooltip::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: rgba(26, 43, 76, 0.95) transparent transparent transparent;
-        }
-
-        .skill-box:hover .skill-tooltip {
-            visibility: visible;
-            opacity: 1;
-        }
-
         /* --- HERO BACKGROUND: FLEXIBLE / RESPONSIVE FRAMING --- */
         /* object-fit: cover (set via the Tailwind class on the <img>) keeps the
            photo full-bleed behind the hero text on every screen size, which
@@ -237,6 +192,77 @@
             #hero-bg-img {
                 object-position: center center;
             }
+        }
+
+        /* ========== SKILL BOX HOVER TOOLTIPS ========== */
+        .skill-box {
+            position: relative;
+        }
+
+        .skill-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-8px);
+            background-color: rgba(26, 43, 76, 0.95);
+            color: #fbf9f6;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.4;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(226, 84, 43, 0.4);
+            max-width: 200px;
+            white-space: normal;
+            text-align: center;
+        }
+
+        .skill-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: rgba(26, 43, 76, 0.95);
+        }
+
+        .skill-box:hover .skill-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 768px) {
+            .skill-tooltip {
+                max-width: 150px;
+                font-size: 12px;
+            }
+        }
+
+        /* ========== FORMSPREE SUBMISSION ========== */
+        #submit-btn {
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+
+        #submit-btn:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+
+        #form-loading {
+            display: none;
+            text-align: center;
+            color: #e2542b;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        #form-loading.show {
+            display: block;
         }
     </style>
 </head>
@@ -317,7 +343,7 @@
                 <a href="#hero-section" class="hover:text-theme-accent transition-colors">Home</a>
                 <a href="#about" class="hover:text-theme-accent transition-colors">About</a>
                 <a href="#pricing" class="hover:text-theme-accent transition-colors">Pricing</a>
-                <a href="#why-me" class="hover:text-theme-accent transition-colors">Why Me</a>
+                <a href="#why-me" class="hover:text-theme-accent transition-colors">Why Me?</a>
                 <a href="#booking" class="px-4 py-2 rounded-full text-white transition-colors bg-theme-accent hover:bg-theme-accentHover">Book a Lesson</a>
             </div>
         </div>
@@ -382,10 +408,10 @@
               Personalized tutoring with a certified native French Teacher from France with 20+ years in Canada.</p>
             </div>
 
-            <!-- Skill Blocks with Hover Tooltips -->
+            <!-- Skill Blocks -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-16">
                 <!-- Skill 1 -->
-                <div class="edit-wrapper skill-box">
+                <div class="edit-wrapper">
                     <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
                         <span class="font-bold flex items-center mb-1 text-theme-accent">
                             <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Skill Block 1
@@ -395,15 +421,15 @@
                     <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
                         <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
                     </div>
-                    <div class="bg-[#fbf9f6]/10 backdrop-blur-sm border border-[#fbf9f6]/20 p-6 rounded-xl flex flex-col items-center hover:bg-[#e2542b]/20 transition-all cursor-default h-full">
+                    <div class="skill-box bg-[#fbf9f6]/10 backdrop-blur-sm border border-[#fbf9f6]/20 p-6 rounded-xl flex flex-col items-center hover:bg-[#e2542b]/20 transition-all cursor-default h-full">
+                        <div class="skill-tooltip">Master French grammar rules, verb conjugations, and sentence structure with clear, step-by-step guidance.</div>
                         <i data-lucide="book-open" class="w-8 h-8 text-theme-accent mb-3"></i>
                         <span class="font-medium text-sm lg:text-base">Grammar Foundations</span>
-                        <div class="skill-tooltip">Master essential French grammar rules, verb conjugations, and sentence structure to build a strong foundation.</div>
                     </div>
                 </div>
                 
                 <!-- Skill 2 -->
-                <div class="edit-wrapper skill-box">
+                <div class="edit-wrapper">
                     <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
                         <span class="font-bold flex items-center mb-1 text-theme-accent">
                             <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Skill Block 2
@@ -413,15 +439,15 @@
                     <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
                         <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
                     </div>
-                    <div class="bg-[#fbf9f6]/10 backdrop-blur-sm border border-[#fbf9f6]/20 p-6 rounded-xl flex flex-col items-center hover:bg-[#e2542b]/20 transition-all cursor-default h-full">
+                    <div class="skill-box bg-[#fbf9f6]/10 backdrop-blur-sm border border-[#fbf9f6]/20 p-6 rounded-xl flex flex-col items-center hover:bg-[#e2542b]/20 transition-all cursor-default h-full">
+                        <div class="skill-tooltip">Build confidence and fluency through engaging conversations on real-life topics tailored to your interests and level.</div>
                         <i data-lucide="message-circle" class="w-8 h-8 text-theme-accent mb-3"></i>
                         <span class="font-medium text-sm lg:text-base">Conversation Practice</span>
-                        <div class="skill-tooltip">Build confidence speaking French through real-world dialogues, pronunciation coaching, and authentic conversations.</div>
                     </div>
                 </div>
 
                 <!-- Skill 3 -->
-                <div class="edit-wrapper skill-box">
+                <div class="edit-wrapper">
                     <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
                         <span class="font-bold flex items-center mb-1 text-theme-accent">
                             <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Skill Block 3
@@ -431,15 +457,15 @@
                     <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
                         <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
                     </div>
-                    <div class="bg-[#fbf9f6]/10 backdrop-blur-sm border border-[#fbf9f6]/20 p-6 rounded-xl flex flex-col items-center hover:bg-[#e2542b]/20 transition-all cursor-default h-full">
+                    <div class="skill-box bg-[#fbf9f6]/10 backdrop-blur-sm border border-[#fbf9f6]/20 p-6 rounded-xl flex flex-col items-center hover:bg-[#e2542b]/20 transition-all cursor-default h-full">
+                        <div class="skill-tooltip">Targeted preparation for DELF/DALF exams with practice tests, strategy tips, and detailed feedback to ensure your success.</div>
                         <i data-lucide="file-text" class="w-8 h-8 text-theme-accent mb-3"></i>
                         <span class="font-medium text-sm lg:text-base">Exam Preparation</span>
-                        <div class="skill-tooltip">Prepare for DELF and DALF certifications with targeted strategies, practice tests, and expert guidance.</div>
                     </div>
                 </div>
 
                 <!-- Skill 4 -->
-                <div class="edit-wrapper skill-box">
+                <div class="edit-wrapper">
                     <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
                         <span class="font-bold flex items-center mb-1 text-theme-accent">
                             <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Skill Block 4
@@ -449,64 +475,70 @@
                     <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
                         <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
                     </div>
-                    <div class="bg-[#fbf9f6]/10 backdrop-blur-sm border border-[#fbf9f6]/20 p-6 rounded-xl flex flex-col items-center hover:bg-[#e2542b]/20 transition-all cursor-default h-full">
-                        <i data-lucide="star" class="w-8 h-8 text-theme-accent mb-3"></i>
-                        <span class="font-medium text-sm lg:text-base">Customized Learning</span>
-                        <div class="skill-tooltip">Personalized lessons tailored to your goals, pace, and learning style for maximum progress and engagement.</div>
+                    <div class="skill-box bg-[#fbf9f6]/10 backdrop-blur-sm border border-[#fbf9f6]/20 p-6 rounded-xl flex flex-col items-center hover:bg-[#e2542b]/20 transition-all cursor-default h-full">
+                        <div class="skill-tooltip">Personalized lessons adapted to your learning style, goals, and pace, ensuring maximum progress in every session.</div>
+                        <i data-lucide="briefcase" class="w-8 h-8 text-theme-accent mb-3"></i>
+                        <span class="font-medium text-sm lg:text-base">Customized Teaching</span>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- 2. ABOUT SECTION -->
-    <section id="about" class="snap-page py-20 px-6 bg-[#fbf9f6]">
-        <div class="max-w-4xl mx-auto">
-            <div class="edit-wrapper mb-16">
-                <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
-                    <span class="font-bold flex items-center mb-1 text-theme-accent">
-                        <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> About Section Title
-                    </span>
-                    <span class="font-normal opacity-90 leading-tight">Edit the heading text in the CMS.</span>
-                </div>
-                <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
-                    <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                </div>
-                <h3 class="text-4xl font-serif font-bold text-center text-theme-navy mb-8">About Me</h3>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <!-- 2. ABOUT ME SECTION -->
+    <section id="about" class="snap-page min-h-screen flex flex-col items-center justify-center py-24 px-6 bg-white">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="w-full md:w-1/3">
                 <div class="edit-wrapper">
-                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] edit-tooltip">
                         <span class="font-bold flex items-center mb-1 text-theme-accent">
-                            <i data-lucide="image" class="w-3.5 h-3.5 mr-1"></i> Profile Photo
+                            <i data-lucide="image" class="w-3.5 h-3.5 mr-1"></i> Portrait Photo
                         </span>
-                        <span class="font-normal opacity-90 leading-tight">Upload your professional photo here (square or slightly wider format works best).</span>
+                        <span class="font-normal opacity-90 leading-tight">Upload a professional, friendly photo of yourself here. It will automatically crop to a rounded shape.</span>
                     </div>
                     <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
                         <i data-lucide="image" class="w-3.5 h-3.5"></i>
                     </div>
-                    <img src="Images/profile.jpg" alt="Nicolas profile" class="rounded-2xl shadow-lg w-full">
+                    <div class="relative">
+                        <img 
+                            src="Images/Nicolas.jpeg" 
+                            alt="Tutor Portrait" 
+                            class="relative z-10 rounded-2xl shadow-xl w-full object-cover aspect-[4/5]"
+                        />
+                    </div>
                 </div>
-
-                <div class="edit-wrapper">
-                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+            </div>
+            <div class="w-full md:w-2/3">
+                <h3 class="text-sm font-bold tracking-widest uppercase mb-2 text-theme-accent">About Me</h3>
+                
+                <div class="edit-wrapper inline-block">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] edit-tooltip">
                         <span class="font-bold flex items-center mb-1 text-theme-accent">
-                            <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> About Text
+                            <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> About Heading
                         </span>
-                        <span class="font-normal opacity-90 leading-tight">Edit your bio, credentials, and experience here. Share what makes you unique!</span>
+                        <span class="font-normal opacity-90 leading-tight">Your greeting or section title.</span>
                     </div>
                     <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
                         <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
                     </div>
-                    <p class="text-lg text-gray-600 mb-4 leading-relaxed">
-                        Hello! I'm Nicolas, a certified native French teacher from France with over 20 years of experience teaching in Canada. I'm passionate about making French learning engaging, practical, and fun.
+                    <h2 class="text-4xl font-serif font-bold mb-6">Bonjour! I’m Nicolas.</h2>
+                </div>
+                
+                <div class="edit-wrapper mt-4">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent">
+                            <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Biography text
+                        </span>
+                        <span class="font-normal opacity-90 leading-tight">Write 1-2 paragraphs about your experience. Use the rich text editor to add bolding or links if needed.</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
+                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                    </div>
+                    <p class="text-lg leading-relaxed text-gray-700 mb-6">
+                        I'm a certified French teacher with over 10 years of experience helping students of all ages master the French language with clarity, confidence, and cultural insight.
                     </p>
-                    <p class="text-lg text-gray-600 mb-4 leading-relaxed">
-                        With certifications in Ontario, New Brunswick, Saskatchewan, and Manitoba, I've helped hundreds of students reach their French goals—whether that's mastering everyday conversation, passing exams, or discovering the joy of the French language.
-                    </p>
-                    <p class="text-lg text-gray-600 leading-relaxed">
-                        My teaching philosophy centers on personalization. Every student learns differently, so I tailor lessons to match your pace, goals, and interests.
+                    <p class="text-lg leading-relaxed text-gray-700">
+                        Whether you are starting from zero, preparing for an important exam like DELF/DALF, or looking to improve your conversational skills for an upcoming trip to Paris, my tailored approach ensures you reach your goals efficiently and enjoyably.
                     </p>
                 </div>
             </div>
@@ -514,236 +546,247 @@
     </section>
 
     <!-- 3. PRICING SECTION -->
-    <section id="pricing" class="snap-page py-20 px-6 bg-white">
-        <div class="max-w-4xl mx-auto">
-            <div class="edit-wrapper mb-16">
-                <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
-                    <span class="font-bold flex items-center mb-1 text-theme-accent">
-                        <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Pricing Title
-                    </span>
-                    <span class="font-normal opacity-90 leading-tight">Edit the pricing section heading in the CMS.</span>
+    <section id="pricing" class="snap-page min-h-screen flex flex-col items-center justify-center py-24 px-6 bg-theme-cream">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="text-sm font-bold tracking-widest uppercase mb-2 text-theme-accent">Investment</h3>
+            <h2 class="text-4xl font-serif font-bold mb-12">Clear & Simple Pricing</h2>
+            
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
+                <!-- Main Price -->
+                <div class="md:w-1/2 p-12 flex flex-col justify-center items-center bg-theme-navy text-theme-cream">
+                    <div class="edit-wrapper text-center flex flex-col items-center">
+                        <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                            <span class="font-bold flex items-center mb-1 text-theme-accent">
+                                <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Hourly Rate
+                            </span>
+                            <span class="font-normal opacity-90 leading-tight">Update your flat hourly rate here. Change the number and currency symbol as needed.</span>
+                        </div>
+                        <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
+                            <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                        </div>
+                        <div class="text-6xl font-serif font-bold mb-2 text-theme-accent">$60</div>
+                        <div class="text-xl font-light opacity-90 mb-6">per hour</div>
+                        <p class="text-sm opacity-75 text-center max-w-[200px]">Includes personalized lesson materials and feedback.</p>
+                    </div>
                 </div>
-                <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
-                    <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                </div>
-                <h3 class="text-4xl font-serif font-bold text-center text-theme-navy">Pricing</h3>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Pricing Card 1 -->
-                <div class="edit-wrapper border border-gray-200 rounded-2xl p-8">
-                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
-                        <span class="font-bold flex items-center mb-1 text-theme-accent">
-                            <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Pricing Card
-                        </span>
-                        <span class="font-normal opacity-90 leading-tight">Edit the tier name, price, and features in the CMS.</span>
+                
+                <!-- Add-ons -->
+                <div class="md:w-1/2 p-10 text-left">
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-100 pb-4">Additional Options</h4>
+                    
+                    <div class="edit-wrapper">
+                        <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] edit-tooltip">
+                            <span class="font-bold flex items-center mb-1 text-theme-accent">
+                                <i data-lucide="file-text" class="w-3.5 h-3.5 mr-1"></i> Pricing Add-ons
+                            </span>
+                            <span class="font-normal opacity-90 leading-tight">Add, remove, or edit these list items in the CMS. Use this for travel fees, materials, etc.</span>
+                        </div>
+                        <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
+                            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex justify-between items-center">
+                                <span class="flex items-center gap-2"><i data-lucide="map-pin" class="w-[18px] h-[18px] text-theme-accent"></i> On-site lesson</span>
+                                <span class="font-bold">+$10</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="flex items-center gap-2"><i data-lucide="clock" class="w-[18px] h-[18px] text-theme-accent"></i> Weekend lesson</span>
+                                <span class="font-bold">+$20</span>
+                            </li>
+                            <li class="flex justify-between items-center text-sm text-gray-500 pt-2 border-t border-gray-50 mt-2">
+                                <span>Travel distance over 10 km</span>
+                                <span>+$0.50/km</span>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
-                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                    </div>
-                    <h4 class="text-2xl font-serif font-bold text-theme-navy mb-4">Single Session</h4>
-                    <p class="text-4xl font-bold text-theme-accent mb-6">$50</p>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-5 h-5 text-theme-accent"></i> 60-minute session</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-5 h-5 text-theme-accent"></i> Online or in-person</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-5 h-5 text-theme-accent"></i> Personalized content</li>
-                    </ul>
-                </div>
-
-                <!-- Pricing Card 2 (Featured) -->
-                <div class="edit-wrapper border-2 border-theme-accent rounded-2xl p-8 bg-theme-navy/5 transform md:scale-105">
-                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
-                        <span class="font-bold flex items-center mb-1 text-theme-accent">
-                            <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Featured Pricing Card
-                        </span>
-                        <span class="font-normal opacity-90 leading-tight">Edit the tier name, price, and features. This card is highlighted as the best value.</span>
-                    </div>
-                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
-                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                    </div>
-                    <div class="bg-theme-accent text-white px-4 py-2 rounded-full text-sm font-bold inline-block mb-4">MOST POPULAR</div>
-                    <h4 class="text-2xl font-serif font-bold text-theme-navy mb-4">Monthly Plan</h4>
-                    <p class="text-4xl font-bold text-theme-accent mb-6">$180<span class="text-lg text-gray-600">/month</span></p>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-5 h-5 text-theme-accent"></i> 4 × 60-minute sessions</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-5 h-5 text-theme-accent"></i> Save $20 per session</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-5 h-5 text-theme-accent"></i> Flexible scheduling</li>
-                    </ul>
-                </div>
-
-                <!-- Pricing Card 3 -->
-                <div class="edit-wrapper border border-gray-200 rounded-2xl p-8">
-                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
-                        <span class="font-bold flex items-center mb-1 text-theme-accent">
-                            <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Pricing Card
-                        </span>
-                        <span class="font-normal opacity-90 leading-tight">Edit the tier name, price, and features in the CMS.</span>
-                    </div>
-                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
-                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                    </div>
-                    <h4 class="text-2xl font-serif font-bold text-theme-navy mb-4">Intensive Course</h4>
-                    <p class="text-4xl font-bold text-theme-accent mb-6">$400</p>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-5 h-5 text-theme-accent"></i> 10 × 60-minute sessions</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-5 h-5 text-theme-accent"></i> Save $100 total</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-5 h-5 text-theme-accent"></i> Tailored curriculum</li>
-                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 4. WHY ME SECTION -->
-    <section id="why-me" class="snap-page py-20 px-6 bg-[#fbf9f6]">
-        <div class="max-w-4xl mx-auto">
-            <div class="edit-wrapper mb-16">
-                <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
-                    <span class="font-bold flex items-center mb-1 text-theme-accent">
-                        <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Why Me Title
-                    </span>
-                    <span class="font-normal opacity-90 leading-tight">Edit the section heading in the CMS.</span>
-                </div>
-                <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
-                    <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                </div>
-                <h3 class="text-4xl font-serif font-bold text-center text-theme-navy">Why Choose Me?</h3>
+    <section id="why-me" class="snap-page min-h-screen flex flex-col items-center justify-center py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-sm font-bold tracking-widest uppercase mb-2 text-theme-accent">Why Choose Me</h3>
+                <h2 class="text-4xl font-serif font-bold">Le French Flair Difference</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="edit-wrapper flex gap-4">
+                <div class="edit-wrapper">
                     <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
-                        <span class="font-bold flex items-center mb-1 text-theme-accent">
-                            <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Feature
-                        </span>
-                        <span class="font-normal opacity-90 leading-tight">Edit the icon, title, and description in the CMS.</span>
+                        <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="image" class="w-3.5 h-3.5 mr-1"></i> Feature Block 1</span>
+                        <span class="font-normal opacity-90 leading-tight">Edit title, description, or click the banner to upload a custom horizontal photo (recommended 800x300px).</span>
                     </div>
-                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
-                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                    </div>
-                    <div class="flex-shrink-0">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-theme-accent text-white">
-                            <i data-lucide="award" class="w-6 h-6"></i>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="image" class="w-3.5 h-3.5"></i></div>
+                    
+                    <div class="rounded-2xl border border-gray-100 hover:shadow-xl transition-shadow bg-stone-50 h-full overflow-hidden flex flex-col">
+                        <img src="Images/rub-diploma.jpg" alt="Certified Teacher banner placeholder" class="w-full h-32 object-cover" />
+                        <div class="p-8 flex flex-col flex-1">
+                            <h4 class="text-xl font-bold mb-3">Certified Teacher</h4>
+                            <p class="text-gray-600 leading-relaxed">Accredited teacher    in 4 provinces (On, NB, SK and MB), FLS&nbsp; Specialist and extensive knowledge of the Canadian Curriculum.&nbsp;</p>
                         </div>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-serif font-bold text-theme-navy mb-2">Certified & Accredited</h4>
-                        <p class="text-gray-600">Officially accredited in Ontario, New Brunswick, Saskatchewan, and Manitoba. 20+ years teaching experience.</p>
                     </div>
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="edit-wrapper flex gap-4">
+                <div class="edit-wrapper">
                     <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
-                        <span class="font-bold flex items-center mb-1 text-theme-accent">
-                            <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Feature
-                        </span>
-                        <span class="font-normal opacity-90 leading-tight">Edit the icon, title, and description in the CMS.</span>
+                        <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="image" class="w-3.5 h-3.5 mr-1"></i> Feature Block 2</span>
+                        <span class="font-normal opacity-90 leading-tight">Edit title, description, or click the banner to upload a custom horizontal photo (recommended 800x300px).</span>
                     </div>
-                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
-                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                    </div>
-                    <div class="flex-shrink-0">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-theme-accent text-white">
-                            <i data-lucide="target" class="w-6 h-6"></i>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="image" class="w-3.5 h-3.5"></i></div>
+                    
+                    <div class="rounded-2xl border border-gray-100 hover:shadow-xl transition-shadow bg-stone-50 h-full overflow-hidden flex flex-col">
+                        <img src="Images/rub-classroom.jpg" alt="10+ Years Experience banner placeholder" class="w-full h-32 object-cover" />
+                        <div class="p-8 flex flex-col flex-1">
+                            <h4 class="text-xl font-bold mb-3">10+ Years Experience</h4>
+                            <p class="text-gray-600 leading-relaxed">4 years as a supply teacher and 5 years as a real classroom teacher in 3 provinces. Worked for Viamonde and Alliance Française.&nbsp;&nbsp;</p>
                         </div>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-serif font-bold text-theme-navy mb-2">Customized Learning</h4>
-                        <p class="text-gray-600">Every lesson is tailored to your goals, pace, and learning style. No cookie-cutter approach here.</p>
                     </div>
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="edit-wrapper flex gap-4">
+                <div class="edit-wrapper">
                     <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
-                        <span class="font-bold flex items-center mb-1 text-theme-accent">
-                            <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Feature
-                        </span>
-                        <span class="font-normal opacity-90 leading-tight">Edit the icon, title, and description in the CMS.</span>
+                        <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="image" class="w-3.5 h-3.5 mr-1"></i> Feature Block 3</span>
+                        <span class="font-normal opacity-90 leading-tight">Edit title, description, or click the banner to upload a custom horizontal photo (recommended 800x300px).</span>
                     </div>
-                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
-                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                    </div>
-                    <div class="flex-shrink-0">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-theme-accent text-white">
-                            <i data-lucide="globe" class="w-6 h-6"></i>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="image" class="w-3.5 h-3.5"></i></div>
+                    
+                    <div class="rounded-2xl border border-gray-100 hover:shadow-xl transition-shadow bg-stone-50 h-full overflow-hidden flex flex-col">
+                        <img src="Images/rub01.jpg" alt="Flexible Scheduling banner placeholder" class="w-full h-32 object-cover" />
+                        <div class="p-8 flex flex-col flex-1">
+                            <h4 class="text-xl font-bold mb-3">Flexible Scheduling</h4>
+                            <p class="text-gray-600 leading-relaxed">Lessons available online via Zoom,in-person at your home or in a place of your convenience.</p>
                         </div>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-serif font-bold text-theme-navy mb-2">Native French Speaker</h4>
-                        <p class="text-gray-600">Learn authentic French from someone who grew up speaking it. Natural pronunciation and cultural insights included.</p>
                     </div>
                 </div>
 
                 <!-- Feature 4 -->
-                <div class="edit-wrapper flex gap-4">
+                <div class="edit-wrapper">
                     <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
-                        <span class="font-bold flex items-center mb-1 text-theme-accent">
-                            <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Feature
-                        </span>
-                        <span class="font-normal opacity-90 leading-tight">Edit the icon, title, and description in the CMS.</span>
+                        <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="image" class="w-3.5 h-3.5 mr-1"></i> Feature Block 4</span>
+                        <span class="font-normal opacity-90 leading-tight">Edit title, description, or click the banner to upload a custom horizontal photo (recommended 800x300px).</span>
                     </div>
-                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
-                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                    </div>
-                    <div class="flex-shrink-0">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-theme-accent text-white">
-                            <i data-lucide="zap" class="w-6 h-6"></i>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="image" class="w-3.5 h-3.5"></i></div>
+                    
+                    <div class="rounded-2xl border border-gray-100 hover:shadow-xl transition-shadow bg-stone-50 h-full overflow-hidden flex flex-col">
+                        <img src="Images/rub-001.jpg" alt="Personalized Approach banner placeholder" class="w-full h-32 object-cover" />
+                        <div class="p-8 flex flex-col flex-1">
+                            <h4 class="text-xl font-bold mb-3">Personalized Approach</h4>
+                            <p class="text-gray-600 leading-relaxed">Tailored lesson plans designed specifically for your individual goals.</p>
                         </div>
                     </div>
-                    <div>
-                        <h4 class="text-xl font-serif font-bold text-theme-navy mb-2">Exam Success</h4>
-                        <p class="text-gray-600">Proven track record helping students pass DELF and DALF exams. Exam strategies and practice included.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="edit-wrapper">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="image" class="w-3.5 h-3.5 mr-1"></i> Feature Block 5</span>
+                        <span class="font-normal opacity-90 leading-tight">Edit title, description, or click the banner to upload a custom horizontal photo (recommended 800x300px).</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="image" class="w-3.5 h-3.5"></i></div>
+                    
+                    <div class="rounded-2xl border border-gray-100 hover:shadow-xl transition-shadow bg-stone-50 h-full overflow-hidden flex flex-col">
+                        <img src="Images/rub-culture.jpg" alt="Cultural Insight banner placeholder" class="w-full h-32 object-cover" />
+                        <div class="p-8 flex flex-col flex-1">
+                            <h4 class="text-xl font-bold mb-3">Cultural Insight</h4>
+                            <p class="text-gray-600 leading-relaxed">Learn authentic French but also cultural French from different provinces.&nbsp;&nbsp;</p>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Feature 6 -->
+                <div class="edit-wrapper">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="image" class="w-3.5 h-3.5 mr-1"></i> Feature Block 6</span>
+                        <span class="font-normal opacity-90 leading-tight">Edit title, description, or click the banner to upload a custom horizontal photo (recommended 800x300px).</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="image" class="w-3.5 h-3.5"></i></div>
+                    
+                    <div class="rounded-2xl border border-gray-100 hover:shadow-xl transition-shadow bg-stone-50 h-full overflow-hidden flex flex-col">
+                        <img src="Images/rub-frenchspeaker.jpg" alt="Proven Results banner placeholder" class="w-full h-32 object-cover" />
+                        <div class="p-8 flex flex-col flex-1">
+                            <h4 class="text-xl font-bold mb-3">Proven Results</h4>
+                            <p class="text-gray-600 leading-relaxed">My students consistently improve their test scores and confidence within weeks.</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
     <!-- 5. BOOKING SECTION -->
-    <section id="booking" class="snap-page py-20 px-6 bg-white">
-        <div class="max-w-4xl mx-auto">
-            <div class="edit-wrapper mb-12">
-                <div id="admin-notice" class="hidden mb-4 p-4 bg-yellow-50 text-yellow-800 rounded-lg flex items-center gap-2 justify-center font-medium border border-yellow-200">
-                    <i data-lucide="alert-circle" class="text-yellow-600 w-5 h-5"></i>
-                    Admin Mode: Click on booked slots (gray) to free them. Click available slots (white) to book them. Refresh does NOT reset bookings—only admin changes can modify slots.
+    <section id="booking" class="snap-page min-h-screen flex flex-col items-center justify-center py-24 px-6 bg-theme-navy text-theme-cream">
+        <div class="max-w-5xl mx-auto">
+            
+            <div class="text-center mb-12">
+                <h3 class="text-sm font-bold tracking-widest uppercase mb-2 text-[#e2542b]">Start Work With Me</h3>
+                <div class="edit-wrapper inline-block">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream border border-theme-accent text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Booking Intro text</span>
+                        <span class="font-normal opacity-90 leading-tight">Write a welcoming message instructing users on how to book.</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i></div>
+                    
+                    <h2 class="text-4xl font-serif font-bold mb-4">Book Your Lesson</h2>
+                    <p class="text-lg opacity-80 max-w-2xl mx-auto">
+                        Choose your preferred time slot to begin your French learning journey. 
+                        All times are displayed in your local timezone.
+                    </p>
                 </div>
-
-                <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
-                    <span class="font-bold flex items-center mb-1 text-theme-accent">
-                        <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Booking Title
-                    </span>
-                    <span class="font-normal opacity-90 leading-tight">Edit the booking section heading in the CMS.</span>
-                </div>
-                <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
-                    <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                </div>
-                <h3 class="text-4xl font-serif font-bold text-center text-theme-navy">Book Your First Lesson</h3>
             </div>
 
-            <div class="border-t border-gray-200 pt-8">
-                <p class="text-center text-gray-600 mb-8 font-medium">Select an available time slot below, then fill in your details to book your personalized French lesson.</p>
+            <div class="bg-white text-slate-900 rounded-3xl p-6 md:p-10 shadow-2xl">
+                
+                <!-- Admin Notice Area (Toggled via JS) -->
+                <div id="admin-notice" class="mb-6 bg-blue-50 border-l-4 border-blue-500 p-4 rounded text-sm text-blue-900 flex items-start gap-3 transition-all" style="display:none;">
+                    <i data-lucide="settings" class="shrink-0 text-blue-500 mt-0.5 w-5 h-5"></i>
+                    <div>
+                        <strong class="block mb-1">Admin Dashboard Mode</strong>
+                        You are currently viewing the calendar as the Admin. 
+                        <ul class="list-disc ml-5 mt-1 opacity-90">
+                            <li>Click any available (green/white) slot to mark it as manually blocked.</li>
+                            <li>Click any booked (gray) slot to cancel the booking and free it up.</li>
+                            <li>Toggle "Editor Mode" off to test the form as a student.</li>
+                        </ul>
+                    </div>
+                </div>
 
-                <div id="calendar-container"></div>
+                <!-- Calendar Grid Wrapper -->
+                <div class="edit-wrapper">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="file-text" class="w-3.5 h-3.5 mr-1"></i> Timetable Configuration</span>
+                        <span class="font-normal opacity-90 leading-tight">Admin can configure working hours (e.g., 10 AM - 5 PM) and active days in the settings panel.</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="file-text" class="w-3.5 h-3.5"></i></div>
+                    
+                    <div class="overflow-x-auto mb-10 pb-4">
+                        <div id="calendar-container" class="min-w-[600px]">
+                            <!-- Calendar generated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Booking Form -->
                 <div id="booking-form-container" class="border-t border-gray-200 pt-8 max-w-2xl mx-auto transition-opacity opacity-50 pointer-events-none">
                     <h4 id="form-title" class="text-2xl font-serif font-bold mb-6 text-center">Select a time slot above</h4>
                     
                     <div id="success-message" class="hidden mb-6 p-4 bg-green-50 text-green-800 rounded-lg flex items-center gap-2 justify-center font-medium">
                         <i data-lucide="check-circle" class="text-green-600 w-5 h-5"></i>
-                        Booking confirmed! Check your email for details.
+                        Booking confirmed! See you then.
                     </div>
 
-                    <form id="booking-form" action="https://formspree.io/f/xwvjgrpw" method="POST" onsubmit="handleBook(event)" class="space-y-4">
+                    <form id="booking-form" onsubmit="handleBook(event)" class="space-y-4">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-bold text-gray-700 mb-1">Name</label>
                                 <input 
                                     type="text" 
                                     id="form-name"
-                                    name="name"
                                     required
                                     disabled
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#e2542b] focus:ring-1 focus:ring-[#e2542b] disabled:bg-gray-50"
@@ -755,7 +798,6 @@
                                 <input 
                                     type="email" 
                                     id="form-email"
-                                    name="email"
                                     required
                                     disabled
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#e2542b] focus:ring-1 focus:ring-[#e2542b] disabled:bg-gray-50"
@@ -768,17 +810,12 @@
                             <label class="block text-sm font-bold text-gray-700 mb-1">What do you want? <span class="font-normal text-gray-400">(tell me about the lesson you're looking for)</span></label>
                             <textarea 
                                 id="form-message"
-                                name="message"
                                 rows="4"
                                 disabled
                                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#e2542b] focus:ring-1 focus:ring-[#e2542b] disabled:bg-gray-50 resize-none"
                                 placeholder="e.g., I'd like to focus on conversational French before a trip to Paris, or prep for the DELF exam..."
                             ></textarea>
                         </div>
-                        
-                        <!-- Hidden fields for Formspree -->
-                        <input type="hidden" id="form-slot" name="time_slot" value="">
-                        <input type="hidden" id="form-recurring" name="recurring" value="No">
                         
                         <div class="flex items-center gap-2 py-2">
                             <button 
@@ -823,16 +860,16 @@
                 
                 <h2 class="text-3xl font-serif font-bold mb-8 text-[#1a2b4c]">Get In Touch</h2>
                 <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-12">
-                    <a href="tel:+16476120175" class="flex items-center gap-3 text-lg font-medium hover:text-theme-accent transition-colors text-theme-navy">
+                    <a href="tel:2041234567" class="flex items-center gap-3 text-lg font-medium hover:text-theme-accent transition-colors text-theme-navy">
                         <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
                             <i data-lucide="phone" class="w-5 h-5 text-theme-accent"></i>
                         </div>
-                  (647) 612-0175 </a>
+                  (647) 612  0175 </a>
                     <a href="mailto:nicolasgrignon.graphicdesigner@gmail.com" class="flex items-center gap-3 text-lg font-medium hover:text-theme-accent transition-colors text-theme-navy">
                         <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
                             <i data-lucide="mail" class="w-5 h-5 text-theme-accent"></i>
                         </div>
-                        nicolasgrignon.graphicdesigner@gmail.com
+                        Info@lefrenchflair.com
                     </a>
                 </div>
             </div>
@@ -850,36 +887,17 @@
 
         // Application State
         let isEditMode = false;
+        // All slots start available. A slot is only added here once a student
+        // successfully books it (see handleBook), or if the Admin manually
+        // marks it unavailable (see handleSlotClick). Admin can free a slot
+        // again at any time by clicking it in Editor Mode.
         let bookedSlots = [];
         let selectedSlot = null;
         let isRecurring = false;
 
-        // Storage key for persistent booked slots
-        const STORAGE_KEY = 'lefrenchflair_booked_slots';
-
         // Constants
         const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
         const HOURS = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'];
-
-        // ========================================
-        // PERSISTENT STORAGE FUNCTIONS
-        // ========================================
-        // Load booked slots from localStorage on page load
-        function loadBookedSlots() {
-            const stored = localStorage.getItem(STORAGE_KEY);
-            if (stored) {
-                try {
-                    bookedSlots = JSON.parse(stored);
-                } catch (e) {
-                    bookedSlots = [];
-                }
-            }
-        }
-
-        // Save booked slots to localStorage (only called by admin operations)
-        function saveBookedSlots() {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(bookedSlots));
-        }
 
         // Format hour display (e.g., "14:00" -> "2:00 PM")
         function formatHour(hourStr) {
@@ -984,16 +1002,15 @@
             const slotId = `${day}-${hour}`;
             
             if (isEditMode) {
-                // ADMIN MODE: Toggle availability and save to localStorage
+                // ADMIN MODE: Toggle availability
                 if (bookedSlots.includes(slotId)) {
                     bookedSlots = bookedSlots.filter(id => id !== slotId);
                 } else {
                     bookedSlots.push(slotId);
                 }
-                saveBookedSlots(); // Persist changes
                 selectedSlot = null;
             } else {
-                // STUDENT MODE: Select for booking (only if not booked)
+                // STUDENT MODE: Select for booking
                 if (!bookedSlots.includes(slotId)) {
                     selectedSlot = slotId;
                     // Hide success message if showing
@@ -1127,53 +1144,92 @@
             }
         }
 
-        // Handle Form Submission - SENDS VIA FORMSPREE.IO
+        // Handle Form Submission with Formspree
         function handleBook(e) {
             e.preventDefault();
             const name = document.getElementById('form-name').value;
             const email = document.getElementById('form-email').value;
             const message = document.getElementById('form-message').value;
+            const submitBtn = document.getElementById('submit-btn');
+            const successMsg = document.getElementById('success-message');
 
             if (selectedSlot && name && email) {
-                // Update hidden fields with form data
+                // Build the booking details
                 const slotDisplay = selectedSlot.replace('-', ' at ');
                 const recurringText = isRecurring ? 'Yes - every week' : 'No';
-                
-                document.getElementById('form-slot').value = slotDisplay;
-                document.getElementById('form-recurring').value = recurringText;
 
-                // Submit the form to Formspree
-                const form = document.getElementById('booking-form');
-                
-                // Add this slot to booked slots and save to localStorage
-                bookedSlots.push(selectedSlot);
-                saveBookedSlots(); // Persist the booking
+                // Prepare form data for Formspree
+                const formData = new FormData();
+                formData.append('name', name);
+                formData.append('email', email);
+                formData.append('time_slot', slotDisplay);
+                formData.append('recurring', recurringText);
+                formData.append('message', message || '(No message provided)');
 
-                // Show success message
-                const successMsg = document.getElementById('success-message');
-                successMsg.classList.remove('hidden');
+                // Disable button and show loading state
+                submitBtn.disabled = true;
+                const originalText = submitBtn.textContent;
+                submitBtn.innerHTML = '<i data-lucide="loader" class="w-5 h-5 inline animate-spin mr-2"></i>Submitting...';
+                lucide.createIcons();
 
-                // Reset form and state
-                selectedSlot = null;
-                document.getElementById('form-name').value = '';
-                document.getElementById('form-email').value = '';
-                document.getElementById('form-message').value = '';
-                if(isRecurring) toggleRecurring(); // Reset to unchecked
+                // Send to Formspree
+                fetch('https://formspree.io/f/xwvjgrpw', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Success - add to booked slots
+                        bookedSlots.push(selectedSlot);
 
-                renderCalendar();
-                updateFormState();
+                        // Show success message
+                        successMsg.classList.remove('hidden');
 
-                // Hide success message after 4 seconds, then submit the form
-                setTimeout(() => {
-                    successMsg.classList.add('hidden');
-                    // Submit to Formspree
-                    form.submit();
-                }, 1500);
+                        // Reset form and state
+                        selectedSlot = null;
+                        document.getElementById('form-name').value = '';
+                        document.getElementById('form-email').value = '';
+                        document.getElementById('form-message').value = '';
+                        if(isRecurring) toggleRecurring();
+
+                        renderCalendar();
+                        updateFormState();
+
+                        // Hide success message after 4 seconds
+                        setTimeout(() => {
+                            successMsg.classList.add('hidden');
+                        }, 4000);
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Show error message to user
+                    const errorMsg = document.createElement('div');
+                    errorMsg.className = 'mb-6 p-4 bg-red-50 text-red-800 rounded-lg flex items-center gap-2 justify-center font-medium';
+                    errorMsg.innerHTML = '<i data-lucide="alert-circle" class="text-red-600 w-5 h-5"></i>There was an issue submitting your booking. Please try again or contact us directly.';
+                    const formContainer = document.getElementById('booking-form-container');
+                    formContainer.insertBefore(errorMsg, formContainer.firstChild);
+                    lucide.createIcons();
+
+                    // Remove error message after 5 seconds
+                    setTimeout(() => {
+                        errorMsg.remove();
+                    }, 5000);
+                })
+                .finally(() => {
+                    // Re-enable button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                });
             }
         }
 
         // Initialize Application
-        loadBookedSlots(); // Load persisted bookings from localStorage
         lucide.createIcons();
         renderCalendar();
         updateFormState();
