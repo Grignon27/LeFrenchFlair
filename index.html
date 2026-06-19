@@ -736,13 +736,14 @@
                         Booking confirmed! Check your email for details.
                     </div>
 
-                    <form id="booking-form" onsubmit="handleBook(event)" class="space-y-4">
+                    <form id="booking-form" action="https://formspree.io/f/xwvjgrpw" method="POST" onsubmit="handleBook(event)" class="space-y-4">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-bold text-gray-700 mb-1">Name</label>
                                 <input 
                                     type="text" 
                                     id="form-name"
+                                    name="name"
                                     required
                                     disabled
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#e2542b] focus:ring-1 focus:ring-[#e2542b] disabled:bg-gray-50"
@@ -754,6 +755,7 @@
                                 <input 
                                     type="email" 
                                     id="form-email"
+                                    name="email"
                                     required
                                     disabled
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#e2542b] focus:ring-1 focus:ring-[#e2542b] disabled:bg-gray-50"
@@ -766,12 +768,17 @@
                             <label class="block text-sm font-bold text-gray-700 mb-1">What do you want? <span class="font-normal text-gray-400">(tell me about the lesson you're looking for)</span></label>
                             <textarea 
                                 id="form-message"
+                                name="message"
                                 rows="4"
                                 disabled
                                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#e2542b] focus:ring-1 focus:ring-[#e2542b] disabled:bg-gray-50 resize-none"
                                 placeholder="e.g., I'd like to focus on conversational French before a trip to Paris, or prep for the DELF exam..."
                             ></textarea>
                         </div>
+                        
+                        <!-- Hidden fields for Formspree -->
+                        <input type="hidden" id="form-slot" name="time_slot" value="">
+                        <input type="hidden" id="form-recurring" name="recurring" value="No">
                         
                         <div class="flex items-center gap-2 py-2">
                             <button 
@@ -1120,7 +1127,7 @@
             }
         }
 
-        // Handle Form Submission - SENDS DIRECT EMAIL
+        // Handle Form Submission - SENDS VIA FORMSPREE.IO
         function handleBook(e) {
             e.preventDefault();
             const name = document.getElementById('form-name').value;
@@ -1128,39 +1135,21 @@
             const message = document.getElementById('form-message').value;
 
             if (selectedSlot && name && email) {
-                // Build a nicely formatted email
+                // Update hidden fields with form data
                 const slotDisplay = selectedSlot.replace('-', ' at ');
                 const recurringText = isRecurring ? 'Yes - every week' : 'No';
+                
+                document.getElementById('form-slot').value = slotDisplay;
+                document.getElementById('form-recurring').value = recurringText;
 
-                const subject = encodeURIComponent('New Lesson Booking - ' + slotDisplay);
-                const bodyLines = [
-                    '================================',
-                    '  Le French Flair - New Booking',
-                    '================================',
-                    '',
-                    'Time Slot:  ' + slotDisplay,
-                    'Recurring:  ' + recurringText,
-                    '',
-                    'Student Name:   ' + name,
-                    'Student Email:  ' + email,
-                    '',
-                    'Message / Goals:',
-                    (message || '(No message provided)'),
-                    '',
-                    '================================',
-                    'Submitted via lefrenchflair.com'
-                ];
-                const body = encodeURIComponent(bodyLines.join('\n'));
-
-                // DIRECT EMAIL - Opens user's default email client
-                // No Google popups, no external services - just native email
-                window.location.href = 'mailto:nicolasgrignon.graphicdesigner@gmail.com?subject=' + subject + '&body=' + body;
-
-                // Add to booked slots and save to localStorage
+                // Submit the form to Formspree
+                const form = document.getElementById('booking-form');
+                
+                // Add this slot to booked slots and save to localStorage
                 bookedSlots.push(selectedSlot);
                 saveBookedSlots(); // Persist the booking
 
-                // Show success
+                // Show success message
                 const successMsg = document.getElementById('success-message');
                 successMsg.classList.remove('hidden');
 
@@ -1174,10 +1163,12 @@
                 renderCalendar();
                 updateFormState();
 
-                // Hide success message after 4 seconds
+                // Hide success message after 4 seconds, then submit the form
                 setTimeout(() => {
                     successMsg.classList.add('hidden');
-                }, 4000);
+                    // Submit to Formspree
+                    form.submit();
+                }, 1500);
             }
         }
 
