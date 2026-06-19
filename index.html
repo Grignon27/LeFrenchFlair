@@ -489,7 +489,7 @@
                         <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
                             <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
                         </div>
-                        <div class="text-6xl font-serif font-bold mb-2 text-theme-accent">$50</div>
+                        <div class="text-6xl font-serif font-bold mb-2 text-theme-accent">$60</div>
                         <div class="text-xl font-light opacity-90 mb-6">per hour</div>
                         <p class="text-sm opacity-75 text-center max-w-[200px]">Includes personalized lesson materials and feedback.</p>
                     </div>
@@ -829,6 +829,20 @@
             const h = parseInt(hourStr.split(':')[0]);
             return h > 12 ? `${h - 12}:00 PM` : `${h}:00 AM`;
         }
+
+        // Prevent page name (anchors/hashes) from displaying in the URL while retaining smooth-scrolling behavior
+        document.addEventListener('click', function(e) {
+            const targetLink = e.target.closest('a[href^="#"]');
+            if (targetLink) {
+                e.preventDefault();
+                const targetId = targetLink.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
 
         // Toggle Editor Mode
         function toggleEditMode() {
