@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth snap-y snap-mandatory">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le French Flair – French Tutoring | Certified Native French Teacher in Canada</title>
+
+    <!-- =====================================================================
+         SEO – Primary Meta Tags
+         These tags help Google, Bing, and other search engines understand
+         what this page is about and display it properly in search results.
+    ====================================================================== -->
+    <meta name="description" content="Le French Flair offers personalized French tutoring with Nicolas, a certified native French teacher from France with 20+ years of experience in Canada. Grammar, conversation, DELF/DALF exam prep – online or in-person.">
+    <meta name="keywords" content="French tutor, French tutoring, French lessons, learn French, French teacher Canada, DELF preparation, DALF preparation, conversational French, French grammar, online French lessons, in-person French tutor, Le French Flair, Nicolas French tutor">
+    <meta name="author" content="Nicolas – Le French Flair">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.lefrenchflair.com/">
+
+    <!-- =====================================================================
+         SEO – Open Graph (Facebook, LinkedIn, WhatsApp previews)
+    ====================================================================== -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.lefrenchflair.com/">
+    <meta property="og:title" content="Le French Flair – Certified French Tutoring in Canada">
+    <meta property="og:description" content="Personalized French tutoring with a certified native teacher from France. Grammar, conversation, DELF/DALF prep – online or in-person across Canada.">
+    <meta property="og:image" content="https://www.lefrenchflair.com/Images/parishero.jpg">
+    <meta property="og:locale" content="en_CA">
+    <meta property="og:site_name" content="Le French Flair">
+
+    <!-- =====================================================================
+         SEO – Twitter / X Card
+    ====================================================================== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Le French Flair – Certified French Tutoring in Canada">
+    <meta name="twitter:description" content="Personalized French lessons with a certified native teacher from France. Book online or in-person sessions today.">
+    <meta name="twitter:image" content="https://www.lefrenchflair.com/Images/parishero.jpg">
+
+    <!-- =====================================================================
+         SEO – JSON-LD Structured Data (Google Rich Results)
+         Tells Google this is a local tutoring service, which can unlock
+         star ratings, contact info, and other rich snippets in search results.
+    ====================================================================== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Le French Flair",
+      "description": "Certified French tutoring with a native teacher from France. Grammar foundations, conversation practice, exam preparation (DELF/DALF), and customized teaching – online or in-person across Canada.",
+      "url": "https://www.lefrenchflair.com",
+      "telephone": "+16476120175",
+      "email": "Info@lefrenchflair.com",
+      "image": "https://www.lefrenchflair.com/Images/parishero.jpg",
+      "priceRange": "$50/hr",
+      "areaServed": "Canada",
+      "serviceType": ["French Language Tutoring", "DELF Exam Preparation", "DALF Exam Preparation", "Conversational French", "French Grammar"],
+      "founder": {
+        "@type": "Person",
+        "name": "Nicolas",
+        "jobTitle": "Certified French Teacher",
+        "description": "Native French teacher from France with 20+ years of experience in Canada, accredited in Ontario, New Brunswick, Saskatchewan, and Manitoba."
+      },
+      "sameAs": []
+    }
+    </script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Configuration & Custom CSS -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        theme: {
+                            cream: '#fbf9f6',
+                            navy: '#1a2b4c',
+                            accent: '#e2542b',
+                            accentHover: '#b8431e'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    animation: {
+                        'spin-slow': 'spin 3s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base styling */
+        body {
+            background-color: #fbf9f6;
+            color: #1a2b4c;
+        }
+
+        ::selection {
+            background-color: #e2542b;
+            color: white;
+        }
+
+        /* --- FULL-PAGE SCROLL SNAP --- */
+        /* Each "page" (header/section/footer) snaps fully into view while scrolling,
+           so no adjacent page peeks in underneath. CSS fallback in addition to the
+           Tailwind snap-* utility classes below, for maximum browser support. */
+        html {
+            scroll-snap-type: y mandatory;
+        }
+
+        .snap-page {
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        /* --- EDITOR MODE STYLES --- */
+        .edit-wrapper {
+            position: relative;
+            z-index: 0;
+        }
+
+        /* Elements hidden by default */
+        .edit-tooltip { display: none; }
+        .edit-indicator { display: none; }
+
+        /* When Editor Mode is Active on the body */
+        body.edit-mode-active .edit-wrapper {
+            border: 2px dashed rgba(226, 84, 43, 0.6);
+            border-radius: 0.5rem;
+            padding: 0.25rem;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        body.edit-mode-active .edit-wrapper:hover {
+            background-color: rgba(226, 84, 43, 0.05);
+        }
+
+        /* Show tooltips and indicators in edit mode */
+        body.edit-mode-active .edit-wrapper > .edit-tooltip {
+            display: flex;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+        
+        body.edit-mode-active .edit-wrapper > .edit-indicator {
+            display: flex;
+            opacity: 1;
+            transition: opacity 0.2s;
+        }
+
+        /* Hover interactions for the edit wrapper */
+        body.edit-mode-active .edit-wrapper:hover > .edit-tooltip {
+            opacity: 1;
+        }
+        
+        body.edit-mode-active .edit-wrapper:hover > .edit-indicator {
+            opacity: 0;
+        }
+
+        /* --- HERO BACKGROUND: FLEXIBLE / RESPONSIVE FRAMING --- */
+        /* object-fit: cover (set via the Tailwind class on the <img>) keeps the
+           photo full-bleed behind the hero text on every screen size, which
+           keeps the overall presentation unchanged. The object-position rules
+           below just shift the visible "window" into the photo depending on
+           viewport shape, so more of the image's subject stays in frame
+           instead of being cropped away. */
+        #hero-bg-img {
+            object-position: center 5%;
+        }
+
+        @media (max-width: 640px) {
+            /* Phones are tall & narrow, which forces heavy cropping of the
+               photo's width. Biasing the focal point to the very top keeps
+               the full height of the Eiffel Tower (including its tip) in
+               frame instead of letting it run off the top edge. */
+            #hero-bg-img {
+                object-position: center top;
+            }
+        }
+
+        @media (min-aspect-ratio: 21/9) {
+            /* Ultra-wide screens force heavy cropping of the photo's height.
+               Centering vertically shows the maximum horizontal extent of
+               the image instead. */
+            #hero-bg-img {
+                object-position: center center;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen">
+
+    <!-- FLOATING EDITOR TOGGLE — owner-only, nearly invisible -->
+    <!-- This tiny dot sits in the bottom-right corner. Normal visitors won't
+         notice it. Hover over it to reveal it, then click to open Editor Mode. -->
+    <button 
+        id="toggle-editor-btn"
+        title=""
+        aria-label="Editor Mode"
+        class="fixed bottom-4 right-4 z-50 transition-all"
+        style="
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(26, 43, 76, 0.12);
+            border: none;
+            padding: 0;
+            cursor: default;
+            opacity: 0.18;
+            box-shadow: none;
+            transition: opacity 0.4s, width 0.3s, height 0.3s, border-radius 0.3s, background-color 0.3s, cursor 0.3s;
+        "
+        onmouseover="
+            this.style.opacity='1';
+            this.style.width='38px';
+            this.style.height='38px';
+            this.style.backgroundColor='#e2542b';
+            this.style.cursor='pointer';
+            this.style.boxShadow='0 2px 8px rgba(0,0,0,0.18)';
+        "
+        onmouseout="if(!document.body.classList.contains('edit-mode-active')) {
+            this.style.opacity='0.18';
+            this.style.width='10px';
+            this.style.height='10px';
+            this.style.backgroundColor='rgba(26,43,76,0.12)';
+            this.style.cursor='default';
+            this.style.boxShadow='none';
+        }"
+        onclick="toggleEditMode()"
+    >
+        <i data-lucide="settings" id="toggle-icon" class="w-4 h-4 text-white" style="display:none;"></i>
+    </button>
+
+    <!-- ADMIN BANNER -->
+    <div id="admin-banner" class="fixed top-0 left-0 w-full bg-theme-navy text-theme-accent text-center py-2 z-50 text-sm font-medium shadow-md flex justify-center items-center gap-2 transition-all duration-300" style="display:none;">
+        <i data-lucide="edit-3" class="w-4 h-4"></i>
+        Editor Mode Active: Hover over dashed boxes to see editing instructions. In the Booking section, you act as the Admin.
+    </div>
+
+    <!-- NAVBAR -->
+    <nav id="main-nav" class="fixed w-full z-40 transition-all top-0 bg-[#fbf9f6]/90 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <div class="edit-wrapper">
+                <!-- Tooltip -->
+                <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] edit-tooltip">
+                    <span class="font-bold flex items-center mb-1 text-theme-accent">
+                        <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Logo/Brand Name
+                    </span>
+                    <span class="font-normal opacity-90 leading-tight">Click to edit the brand name text or upload a logo image here in the CMS.</span>
+                </div>
+                <!-- Indicator -->
+                <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
+                    <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                </div>
+                <!-- Content -->
+                <a href="#hero-section" aria-label="Go to home page">
+                    <h1 class="text-2xl font-serif font-bold text-theme-navy">
+                        <span class="text-theme-navy">Le</span> <span class="text-theme-accent">French</span> <span class="text-theme-navy">Flair</span>
+                    </h1>
+                </a>
+            </div>
+
+            <div class="hidden md:flex gap-6 font-medium text-sm items-center">
+                <a href="#hero-section" class="hover:text-theme-accent transition-colors">Home</a>
+                <a href="#about" class="hover:text-theme-accent transition-colors">About</a>
+                <a href="#pricing" class="hover:text-theme-accent transition-colors">Pricing</a>
+                <a href="#why-me" class="hover:text-theme-accent transition-colors">Why Me</a>
+                <a href="#booking" class="px-4 py-2 rounded-full text-white transition-colors bg-theme-accent hover:bg-theme-accentHover">Book a Lesson</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <header id="hero-section" class="snap-page relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 transition-all">
+        <!-- Background Image Placeholder -->
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <div class="absolute inset-0 bg-[#1a2b4c]/30 z-10"></div> <!-- Dark Overlay -->
+            
+            <div class="edit-wrapper h-full w-full">
+                <div class="absolute top-4 left-4 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] edit-tooltip">
+                    <span class="font-bold flex items-center mb-1 text-theme-accent">
+                        <i data-lucide="image" class="w-3.5 h-3.5 mr-1"></i> Hero Background
+                    </span>
+                    <span class="font-normal opacity-90 leading-tight">Upload a high-quality, inspiring photo here (e.g., a café in Paris or a clean study space). It will automatically resize.</span>
+                </div>
+                <div class="absolute top-4 right-4 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
+                    <i data-lucide="image" class="w-3.5 h-3.5"></i>
+                </div>
+                <img 
+                    id="hero-bg-img"
+                    src="Images/parishero.jpg" 
+                    alt="Paris background" 
+                    class="w-full h-full object-cover"
+                />
+            </div>
+        </div>
+
+        <!-- Hero text content shifted up 90px (additional 50px) using negative top margin -->
+        <div class="max-w-6xl mx-auto relative z-20 text-center text-theme-cream -mt-[90px]">
+            <div class="edit-wrapper inline-block">
+                <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                    <span class="font-bold flex items-center mb-1 text-theme-accent">
+                        <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Main Headline
+                    </span>
+                    <span class="font-normal opacity-90 leading-tight">Keep it bold and action-oriented. Recommended: 3-6 words. Editable in CMS text field.</span>
+                </div>
+                <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
+                    <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                </div>
+                <!-- Tightened space between first line (white) and second line (accent) using leading-[0.95] -->
+                <h2 class="text-[3.1875rem] lg:text-[6.8rem] font-serif font-bold mb-6 leading-[0.95]" style="text-shadow: 2px 3px 12px rgba(0,0,0,0.65);">
+                    Master French <br/><span class="text-theme-accent italic">With a Twist !</span>
+                </h2>
+            </div>
+            
+            <br>
+
+            <div class="edit-wrapper inline-block mt-4">
+                <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                    <span class="font-bold flex items-center mb-1 text-theme-accent">
+                        <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Subheadline
+                    </span>
+                    <span class="font-normal opacity-90 leading-tight">A brief supporting sentence explaining what you do. Editable in CMS text field.</span>
+                </div>
+              <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
+                    <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                </div>
+                <p class="text-xl lg:text-2xl mb-12 max-w-2xl mx-auto opacity-90 font-light">
+              Personalized tutoring with a certified native French Teacher from France with 20+ years in Canada.</p>
+            </div>
+
+            <!-- Skill Blocks -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-16">
+                <!-- Skill 1 -->
+                <div class="edit-wrapper">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent">
+                            <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Skill Block 1
+                        </span>
+                        <span class="font-normal opacity-90 leading-tight">Choose an icon from the library and edit the short text title below it.</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
+                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                    </div>
+                    <div class="bg-[#fbf9f6]/10 backdrop-blur-sm border border-[#fbf9f6]/20 p-6 rounded-xl flex flex-col items-center hover:bg-[#e2542b]/20 transition-all cursor-default h-full">
+                        <i data-lucide="book-open" class="w-8 h-8 text-theme-accent mb-3"></i>
+                        <span class="font-medium text-sm lg:text-base">Grammar Foundations</span>
+                    </div>
+                </div>
+                
+                <!-- Skill 2 -->
+                <div class="edit-wrapper">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent">
+                            <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Skill Block 2
+                        </span>
+                        <span class="font-normal opacity-90 leading-tight">Choose an icon from the library and edit the short text title below it.</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
+                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                    </div>
+                    <div class="bg-[#fbf9f6]/10 backdrop-blur-sm border border-[#fbf9f6]/20 p-6 rounded-xl flex flex-col items-center hover:bg-[#e2542b]/20 transition-all cursor-default h-full">
+                        <i data-lucide="message-circle" class="w-8 h-8 text-theme-accent mb-3"></i>
+                        <span class="font-medium text-sm lg:text-base">Conversation Practice</span>
+                    </div>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="edit-wrapper">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent">
+                            <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Skill Block 3
+                        </span>
+                        <span class="font-normal opacity-90 leading-tight">Choose an icon from the library and edit the short text title below it.</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
+                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                    </div>
+                    <div class="bg-[#fbf9f6]/10 backdrop-blur-sm border border-[#fbf9f6]/20 p-6 rounded-xl flex flex-col items-center hover:bg-[#e2542b]/20 transition-all cursor-default h-full">
+                        <i data-lucide="file-text" class="w-8 h-8 text-theme-accent mb-3"></i>
+                        <span class="font-medium text-sm lg:text-base">Exam Preparation</span>
+                    </div>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="edit-wrapper">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent">
+                            <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Skill Block 4
+                        </span>
+                        <span class="font-normal opacity-90 leading-tight">Choose an icon from the library and edit the short text title below it.</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
+                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                    </div>
+                    <div class="bg-[#fbf9f6]/10 backdrop-blur-sm border border-[#fbf9f6]/20 p-6 rounded-xl flex flex-col items-center hover:bg-[#e2542b]/20 transition-all cursor-default h-full">
+                        <i data-lucide="briefcase" class="w-8 h-8 text-theme-accent mb-3"></i>
+                        <span class="font-medium text-sm lg:text-base">Customized Teaching</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. ABOUT ME SECTION -->
+    <section id="about" class="snap-page min-h-screen flex flex-col items-center justify-center py-24 px-6 bg-white">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="w-full md:w-1/3">
+                <div class="edit-wrapper">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent">
+                            <i data-lucide="image" class="w-3.5 h-3.5 mr-1"></i> Portrait Photo
+                        </span>
+                        <span class="font-normal opacity-90 leading-tight">Upload a professional, friendly photo of yourself here. It will automatically crop to a rounded shape.</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
+                        <i data-lucide="image" class="w-3.5 h-3.5"></i>
+                    </div>
+                    <div class="relative">
+                        <img 
+                            src="Images/Nicolas.jpeg" 
+                            alt="Tutor Portrait" 
+                            class="relative z-10 rounded-2xl shadow-xl w-full object-cover aspect-[4/5]"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="w-full md:w-2/3">
+                <h3 class="text-sm font-bold tracking-widest uppercase mb-2 text-theme-accent">About Me</h3>
+                
+                <div class="edit-wrapper inline-block">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent">
+                            <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> About Heading
+                        </span>
+                        <span class="font-normal opacity-90 leading-tight">Your greeting or section title.</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
+                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                    </div>
+                    <h2 class="text-4xl font-serif font-bold mb-6">Bonjour! I’m Nicolas.</h2>
+                </div>
+                
+                <div class="edit-wrapper mt-4">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent">
+                            <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Biography text
+                        </span>
+                        <span class="font-normal opacity-90 leading-tight">Write 1-2 paragraphs about your experience. Use the rich text editor to add bolding or links if needed.</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
+                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                    </div>
+                    <p class="text-lg leading-relaxed text-gray-700 mb-6">
+                        I'm a certified French teacher with over 10 years of experience helping students of all ages master the French language with clarity, confidence, and cultural insight.
+                    </p>
+                    <p class="text-lg leading-relaxed text-gray-700">
+                        Whether you are starting from zero, preparing for an important exam like DELF/DALF, or looking to improve your conversational skills for an upcoming trip to Paris, my tailored approach ensures you reach your goals efficiently and enjoyably.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. PRICING SECTION -->
+    <section id="pricing" class="snap-page min-h-screen flex flex-col items-center justify-center py-24 px-6 bg-theme-cream">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="text-sm font-bold tracking-widest uppercase mb-2 text-theme-accent">Investment</h3>
+            <h2 class="text-4xl font-serif font-bold mb-12">Clear & Simple Pricing</h2>
+            
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
+                <!-- Main Price -->
+                <div class="md:w-1/2 p-12 flex flex-col justify-center items-center bg-theme-navy text-theme-cream">
+                    <div class="edit-wrapper text-center flex flex-col items-center">
+                        <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                            <span class="font-bold flex items-center mb-1 text-theme-accent">
+                                <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Hourly Rate
+                            </span>
+                            <span class="font-normal opacity-90 leading-tight">Update your flat hourly rate here. Change the number and currency symbol as needed.</span>
+                        </div>
+                        <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
+                            <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                        </div>
+                        <div class="text-6xl font-serif font-bold mb-2 text-theme-accent">$50</div>
+                        <div class="text-xl font-light opacity-90 mb-6">per hour</div>
+                        <p class="text-sm opacity-75 text-center max-w-[200px]">Includes personalized lesson materials and feedback.</p>
+                    </div>
+                </div>
+                
+                <!-- Add-ons -->
+                <div class="md:w-1/2 p-10 text-left">
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-100 pb-4">Additional Options</h4>
+                    
+                    <div class="edit-wrapper">
+                        <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] edit-tooltip">
+                            <span class="font-bold flex items-center mb-1 text-theme-accent">
+                                <i data-lucide="file-text" class="w-3.5 h-3.5 mr-1"></i> Pricing Add-ons
+                            </span>
+                            <span class="font-normal opacity-90 leading-tight">Add, remove, or edit these list items in the CMS. Use this for travel fees, materials, etc.</span>
+                        </div>
+                        <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator">
+                            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex justify-between items-center">
+                                <span class="flex items-center gap-2"><i data-lucide="map-pin" class="w-[18px] h-[18px] text-theme-accent"></i> On-site lesson</span>
+                                <span class="font-bold">+$10</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="flex items-center gap-2"><i data-lucide="clock" class="w-[18px] h-[18px] text-theme-accent"></i> Weekend lesson</span>
+                                <span class="font-bold">+$20</span>
+                            </li>
+                            <li class="flex justify-between items-center text-sm text-gray-500 pt-2 border-t border-gray-50 mt-2">
+                                <span>Travel distance over 10 km</span>
+                                <span>+$0.50/km</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. WHY ME SECTION -->
+    <section id="why-me" class="snap-page min-h-screen flex flex-col items-center justify-center py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-sm font-bold tracking-widest uppercase mb-2 text-theme-accent">Why Choose Me</h3>
+                <h2 class="text-4xl font-serif font-bold">Le French Flair Difference</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="edit-wrapper">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="image" class="w-3.5 h-3.5 mr-1"></i> Feature Block 1</span>
+                        <span class="font-normal opacity-90 leading-tight">Edit title, description, or click the banner to upload a custom horizontal photo (recommended 800x300px).</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="image" class="w-3.5 h-3.5"></i></div>
+                    
+                    <div class="rounded-2xl border border-gray-100 hover:shadow-xl transition-shadow bg-stone-50 h-full overflow-hidden flex flex-col">
+                        <img src="Images/rub-diploma.jpg" alt="Certified Teacher banner placeholder" class="w-full h-32 object-cover" />
+                        <div class="p-8 flex flex-col flex-1">
+                            <h4 class="text-xl font-bold mb-3">Certified Teacher</h4>
+                            <p class="text-gray-600 leading-relaxed">Accredited teacher    in 4 provinces (On, NB, SK and MB), FLS&nbsp; Specialist and extensive knowledge of the Canadian Curriculum.&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="edit-wrapper">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="image" class="w-3.5 h-3.5 mr-1"></i> Feature Block 2</span>
+                        <span class="font-normal opacity-90 leading-tight">Edit title, description, or click the banner to upload a custom horizontal photo (recommended 800x300px).</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="image" class="w-3.5 h-3.5"></i></div>
+                    
+                    <div class="rounded-2xl border border-gray-100 hover:shadow-xl transition-shadow bg-stone-50 h-full overflow-hidden flex flex-col">
+                        <img src="Images/rub-classroom.jpg" alt="10+ Years Experience banner placeholder" class="w-full h-32 object-cover" />
+                        <div class="p-8 flex flex-col flex-1">
+                            <h4 class="text-xl font-bold mb-3">10+ Years Experience</h4>
+                            <p class="text-gray-600 leading-relaxed">4 years as a supply teacher and 5 years as a real classroom teacher in 3 provinces. Worked for Viamonde and Alliance Française.&nbsp;&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="edit-wrapper">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="image" class="w-3.5 h-3.5 mr-1"></i> Feature Block 3</span>
+                        <span class="font-normal opacity-90 leading-tight">Edit title, description, or click the banner to upload a custom horizontal photo (recommended 800x300px).</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="image" class="w-3.5 h-3.5"></i></div>
+                    
+                    <div class="rounded-2xl border border-gray-100 hover:shadow-xl transition-shadow bg-stone-50 h-full overflow-hidden flex flex-col">
+                        <img src="Images/rub01.jpg" alt="Flexible Scheduling banner placeholder" class="w-full h-32 object-cover" />
+                        <div class="p-8 flex flex-col flex-1">
+                            <h4 class="text-xl font-bold mb-3">Flexible Scheduling</h4>
+                            <p class="text-gray-600 leading-relaxed">Lessons available online via Zoom,in-person at your home or in a place of your convenience.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="edit-wrapper">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="image" class="w-3.5 h-3.5 mr-1"></i> Feature Block 4</span>
+                        <span class="font-normal opacity-90 leading-tight">Edit title, description, or click the banner to upload a custom horizontal photo (recommended 800x300px).</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="image" class="w-3.5 h-3.5"></i></div>
+                    
+                    <div class="rounded-2xl border border-gray-100 hover:shadow-xl transition-shadow bg-stone-50 h-full overflow-hidden flex flex-col">
+                        <img src="Images/rub-001.jpg" alt="Personalized Approach banner placeholder" class="w-full h-32 object-cover" />
+                        <div class="p-8 flex flex-col flex-1">
+                            <h4 class="text-xl font-bold mb-3">Personalized Approach</h4>
+                            <p class="text-gray-600 leading-relaxed">Tailored lesson plans designed specifically for your individual goals.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="edit-wrapper">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="image" class="w-3.5 h-3.5 mr-1"></i> Feature Block 5</span>
+                        <span class="font-normal opacity-90 leading-tight">Edit title, description, or click the banner to upload a custom horizontal photo (recommended 800x300px).</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="image" class="w-3.5 h-3.5"></i></div>
+                    
+                    <div class="rounded-2xl border border-gray-100 hover:shadow-xl transition-shadow bg-stone-50 h-full overflow-hidden flex flex-col">
+                        <img src="Images/rub-culture.jpg" alt="Cultural Insight banner placeholder" class="w-full h-32 object-cover" />
+                        <div class="p-8 flex flex-col flex-1">
+                            <h4 class="text-xl font-bold mb-3">Cultural Insight</h4>
+                            <p class="text-gray-600 leading-relaxed">Learn authentic French but also cultural French from different provinces.&nbsp;&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="edit-wrapper">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="image" class="w-3.5 h-3.5 mr-1"></i> Feature Block 6</span>
+                        <span class="font-normal opacity-90 leading-tight">Edit title, description, or click the banner to upload a custom horizontal photo (recommended 800x300px).</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="image" class="w-3.5 h-3.5"></i></div>
+                    
+                    <div class="rounded-2xl border border-gray-100 hover:shadow-xl transition-shadow bg-stone-50 h-full overflow-hidden flex flex-col">
+                        <img src="Images/rub-frenchspeaker.jpg" alt="Proven Results banner placeholder" class="w-full h-32 object-cover" />
+                        <div class="p-8 flex flex-col flex-1">
+                            <h4 class="text-xl font-bold mb-3">Proven Results</h4>
+                            <p class="text-gray-600 leading-relaxed">My students consistently improve their test scores and confidence within weeks.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. BOOKING SECTION -->
+    <section id="booking" class="snap-page min-h-screen flex flex-col items-center justify-center py-24 px-6 bg-theme-navy text-theme-cream">
+        <div class="max-w-5xl mx-auto">
+            
+            <div class="text-center mb-12">
+                <h3 class="text-sm font-bold tracking-widest uppercase mb-2 text-[#e2542b]">Start Work With Me</h3>
+                <div class="edit-wrapper inline-block">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream border border-theme-accent text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Booking Intro text</span>
+                        <span class="font-normal opacity-90 leading-tight">Write a welcoming message instructing users on how to book.</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i></div>
+                    
+                    <h2 class="text-4xl font-serif font-bold mb-4">Book Your Lesson</h2>
+                    <p class="text-lg opacity-80 max-w-2xl mx-auto">
+                        Choose your preferred time slot to begin your French learning journey. 
+                        All times are displayed in your local timezone.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white text-slate-900 rounded-3xl p-6 md:p-10 shadow-2xl">
+                
+                <!-- Admin Notice Area (Toggled via JS) -->
+                <div id="admin-notice" class="mb-6 bg-blue-50 border-l-4 border-blue-500 p-4 rounded text-sm text-blue-900 flex items-start gap-3 transition-all" style="display:none;">
+                    <i data-lucide="settings" class="shrink-0 text-blue-500 mt-0.5 w-5 h-5"></i>
+                    <div>
+                        <strong class="block mb-1">Admin Dashboard Mode</strong>
+                        You are currently viewing the calendar as the Admin. 
+                        <ul class="list-disc ml-5 mt-1 opacity-90">
+                            <li>Click any available (green/white) slot to mark it as manually blocked.</li>
+                            <li>Click any booked (gray) slot to cancel the booking and free it up.</li>
+                            <li>Toggle "Editor Mode" off to test the form as a student.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Calendar Grid Wrapper -->
+                <div class="edit-wrapper">
+                    <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] edit-tooltip">
+                        <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="file-text" class="w-3.5 h-3.5 mr-1"></i> Timetable Configuration</span>
+                        <span class="font-normal opacity-90 leading-tight">Admin can configure working hours (e.g., 10 AM - 5 PM) and active days in the settings panel.</span>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="file-text" class="w-3.5 h-3.5"></i></div>
+                    
+                    <div class="overflow-x-auto mb-10 pb-4">
+                        <div id="calendar-container" class="min-w-[600px]">
+                            <!-- Calendar generated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Booking Form -->
+                <div id="booking-form-container" class="border-t border-gray-200 pt-8 max-w-2xl mx-auto transition-opacity opacity-50 pointer-events-none">
+                    <h4 id="form-title" class="text-2xl font-serif font-bold mb-6 text-center">Select a time slot above</h4>
+                    
+                    <div id="success-message" class="hidden mb-6 p-4 bg-green-50 text-green-800 rounded-lg flex items-center gap-2 justify-center font-medium">
+                        <i data-lucide="check-circle" class="text-green-600 w-5 h-5"></i>
+                        Booking confirmed! See you then.
+                    </div>
+
+                    <form id="booking-form" onsubmit="handleBook(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Name</label>
+                                <input 
+                                    type="text" 
+                                    id="form-name"
+                                    required
+                                    disabled
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#e2542b] focus:ring-1 focus:ring-[#e2542b] disabled:bg-gray-50"
+                                    placeholder="Jean Valjean"
+                                />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Email</label>
+                                <input 
+                                    type="email" 
+                                    id="form-email"
+                                    required
+                                    disabled
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#e2542b] focus:ring-1 focus:ring-[#e2542b] disabled:bg-gray-50"
+                                    placeholder="jean@example.com"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">What do you want? <span class="font-normal text-gray-400">(tell me about the lesson you're looking for)</span></label>
+                            <textarea 
+                                id="form-message"
+                                rows="4"
+                                disabled
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#e2542b] focus:ring-1 focus:ring-[#e2542b] disabled:bg-gray-50 resize-none"
+                                placeholder="e.g., I'd like to focus on conversational French before a trip to Paris, or prep for the DELF exam..."
+                            ></textarea>
+                        </div>
+                        
+                        <div class="flex items-center gap-2 py-2">
+                            <button 
+                                type="button"
+                                id="recurring-btn"
+                                disabled
+                                onclick="toggleRecurring()"
+                                class="text-theme-accent disabled:opacity-50"
+                            >
+                                <i data-lucide="square" id="recurring-icon" class="w-6 h-6"></i>
+                            </button>
+                            <label class="text-gray-700 font-medium cursor-pointer" onclick="if(!document.getElementById('recurring-btn').disabled) toggleRecurring()">
+                                I want this time every week
+                            </label>
+                        </div>
+
+                        <button 
+                            type="submit"
+                            id="submit-btn"
+                            disabled
+                            class="w-full py-4 rounded-lg font-bold text-lg text-white transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed bg-gray-400"
+                        >
+                            Confirm Booking
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CONTACT SECTION & FOOTER -->
+    <footer class="snap-page min-h-screen flex flex-col items-center justify-center py-16 px-6 bg-[#f5f0e6] border-t border-[#e8dfc8]">
+        <div class="max-w-4xl mx-auto text-center">
+            
+            <div class="edit-wrapper inline-block w-full">
+                <div class="absolute -top-3 -left-2 bg-theme-navy text-theme-cream text-xs px-2 py-1 rounded shadow-lg z-20 flex-col min-w-[200px] text-left edit-tooltip">
+                    <span class="font-bold flex items-center mb-1 text-theme-accent"><i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i> Contact Details</span>
+                    <span class="font-normal opacity-90 leading-tight">Update your phone number, email address, and select preferred icons in the CMS block.</span>
+                </div>
+                <div class="absolute -top-2 -right-2 bg-theme-accent text-white p-1 rounded-full shadow z-10 edit-indicator"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i></div>
+                
+                <h2 class="text-3xl font-serif font-bold mb-8 text-[#1a2b4c]">Get In Touch</h2>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-12">
+                    <a href="tel:2041234567" class="flex items-center gap-3 text-lg font-medium hover:text-theme-accent transition-colors text-theme-navy">
+                        <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
+                            <i data-lucide="phone" class="w-5 h-5 text-theme-accent"></i>
+                        </div>
+                  (647) 612  0175 </a>
+                    <a href="mailto:nicolasgrignon.graphicdesigner@gmail.com" class="flex items-center gap-3 text-lg font-medium hover:text-theme-accent transition-colors text-theme-navy">
+                        <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
+                            <i data-lucide="mail" class="w-5 h-5 text-theme-accent"></i>
+                        </div>
+                        Info@lefrenchflair.com
+                    </a>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-[#e8dfc8] text-sm text-gray-500">
+                © <span id="current-year"></span> Le French Flair. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // Set Current Year in Footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Application State
+        let isEditMode = false;
+        // All slots start available. A slot is only added here once a student
+        // successfully books it (see handleBook), or if the Admin manually
+        // marks it unavailable (see handleSlotClick). Admin can free a slot
+        // again at any time by clicking it in Editor Mode.
+        let bookedSlots = [];
+        let selectedSlot = null;
+        let isRecurring = false;
+
+        // Constants
+        const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+        const HOURS = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'];
+
+        // Format hour display (e.g., "14:00" -> "2:00 PM")
+        function formatHour(hourStr) {
+            const h = parseInt(hourStr.split(':')[0]);
+            return h > 12 ? `${h - 12}:00 PM` : `${h}:00 AM`;
+        }
+
+        // Toggle Editor Mode
+        function toggleEditMode() {
+            // Entering Editor Mode requires the correct password.
+            // Exiting back to the native student view never requires one.
+            if (!isEditMode) {
+                const password = prompt('Enter the Editor Mode password:');
+                if (password === null) {
+                    return; // User cancelled the prompt
+                }
+                if (password !== 'Willow27') {
+                    alert('Incorrect password. Access to Editor Mode denied.');
+                    return;
+                }
+            }
+
+            isEditMode = !isEditMode;
+            
+            // Toggle body class to show/hide edit outlines
+            if(isEditMode) {
+                document.body.classList.add('edit-mode-active');
+            } else {
+                document.body.classList.remove('edit-mode-active');
+            }
+
+            // Update Toggle Button Visuals
+            const btn = document.getElementById('toggle-editor-btn');
+            const icon = document.getElementById('toggle-icon');
+
+            if(isEditMode) {
+                // Stay fully visible and navy while editor is active
+                btn.style.opacity      = '1';
+                btn.style.width        = '42px';
+                btn.style.height       = '42px';
+                btn.style.borderRadius = '50%';
+                btn.style.backgroundColor = '#1a2b4c';
+                btn.style.border       = '2px solid #e2542b';
+                btn.style.cursor       = 'pointer';
+                btn.style.boxShadow    = '0 2px 8px rgba(0,0,0,0.25)';
+                btn.title              = 'Exit Editor Mode';
+                icon.style.display     = 'flex';
+                icon.classList.add('animate-spin-slow');
+            } else {
+                // Shrink back to near-invisible dot
+                btn.style.opacity      = '0.18';
+                btn.style.width        = '10px';
+                btn.style.height       = '10px';
+                btn.style.borderRadius = '50%';
+                btn.style.backgroundColor = 'rgba(26,43,76,0.12)';
+                btn.style.border       = 'none';
+                btn.style.cursor       = 'default';
+                btn.style.boxShadow    = 'none';
+                btn.title              = '';
+                icon.style.display     = 'none';
+                icon.classList.remove('animate-spin-slow');
+            }
+
+            // Update UI Elements visibility based on mode
+            document.getElementById('admin-banner').style.display = isEditMode ? 'flex' : 'none';
+            document.getElementById('admin-notice').style.display = isEditMode ? 'flex' : 'none';
+            
+            const nav = document.getElementById('main-nav');
+            const hero = document.getElementById('hero-section');
+            if(isEditMode) {
+                nav.classList.replace('top-0', 'top-9');
+                hero.classList.add('mt-9');
+            } else {
+                nav.classList.replace('top-9', 'top-0');
+                hero.classList.remove('mt-9');
+            }
+
+            // Unselect any selected slot when switching modes
+            selectedSlot = null;
+            
+            // Re-render Calendar & Update Form
+            renderCalendar();
+            updateFormState();
+        }
+
+        // Handle Clicking on a Calendar Slot
+        function handleSlotClick(day, hour) {
+            const slotId = `${day}-${hour}`;
+            
+            if (isEditMode) {
+                // ADMIN MODE: Toggle availability
+                if (bookedSlots.includes(slotId)) {
+                    bookedSlots = bookedSlots.filter(id => id !== slotId);
+                } else {
+                    bookedSlots.push(slotId);
+                }
+                selectedSlot = null;
+            } else {
+                // STUDENT MODE: Select for booking
+                if (!bookedSlots.includes(slotId)) {
+                    selectedSlot = slotId;
+                    // Hide success message if showing
+                    document.getElementById('success-message').classList.add('hidden');
+                }
+            }
+
+            renderCalendar();
+            updateFormState();
+        }
+
+        // Generate the Calendar Grid HTML
+        function renderCalendar() {
+            const container = document.getElementById('calendar-container');
+            let html = '';
+
+            // Header Row
+            html += `<div class="grid grid-cols-6 gap-2 mb-2">
+                        <div class="font-bold text-gray-400 text-sm flex items-end pb-2">Time</div>`;
+            DAYS.forEach(day => {
+                html += `<div class="font-bold text-center pb-2 border-b-2 border-[#e2542b]">${day}</div>`;
+            });
+            html += `</div>`;
+
+            // Time Rows
+            HOURS.forEach(hour => {
+                html += `<div class="grid grid-cols-6 gap-2 py-1">
+                            <div class="text-sm font-medium text-gray-500 flex items-center">${formatHour(hour)}</div>`;
+                
+                DAYS.forEach(day => {
+                    const slotId = `${day}-${hour}`;
+                    const isBooked = bookedSlots.includes(slotId);
+                    const isSelected = selectedSlot === slotId;
+                    
+                    let btnClass = "py-3 rounded-lg text-sm font-medium transition-all border-2 relative group ";
+                    let btnText = "";
+                    let tooltipHtml = "";
+                    let disabledAttr = (isBooked && !isEditMode) ? 'disabled' : '';
+
+                    if (isBooked) {
+                        if (isEditMode) {
+                            // Admin view of booked slot
+                            btnClass += "bg-gray-200 border-gray-300 text-gray-500 cursor-pointer hover:bg-red-100 hover:text-red-600 hover:border-red-300";
+                            btnText = `<span class="group-hover:hidden">Booked</span><span class="hidden group-hover:inline">Free Slot</span>`;
+                            tooltipHtml = `title="Click to cancel booking & un-gray"`;
+                        } else {
+                            // Student view of booked slot
+                            btnClass += "bg-gray-100 border-gray-100 text-gray-400 cursor-not-allowed";
+                            btnText = "Booked";
+                        }
+                    } else if (isSelected) {
+                        btnClass += "bg-[#e2542b] border-[#e2542b] text-white shadow-lg transform scale-105";
+                        btnText = "Available";
+                    } else {
+                        btnClass += "bg-white border-gray-200 text-gray-700 hover:border-[#e2542b] cursor-pointer";
+                        btnText = "Available";
+                    }
+
+                    html += `
+                        <button
+                            ${disabledAttr}
+                            onclick="handleSlotClick('${day}', '${hour}')"
+                            class="${btnClass}"
+                            ${tooltipHtml}
+                        >
+                            ${btnText}
+                        </button>
+                    `;
+                });
+                
+                html += `</div>`;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Toggle the Recurring Checkbox Custom UI
+        function toggleRecurring() {
+            isRecurring = !isRecurring;
+            const icon = document.getElementById('recurring-icon');
+            if(isRecurring) {
+                icon.setAttribute('data-lucide', 'check-square');
+            } else {
+                icon.setAttribute('data-lucide', 'square');
+            }
+            // Re-render the specific icon that changed
+            lucide.createIcons();
+        }
+
+        // Enable/Disable Form based on state
+        function updateFormState() {
+            const formContainer = document.getElementById('booking-form-container');
+            const title = document.getElementById('form-title');
+            const nameInput = document.getElementById('form-name');
+            const emailInput = document.getElementById('form-email');
+            const messageInput = document.getElementById('form-message');
+            const recurringBtn = document.getElementById('recurring-btn');
+            const submitBtn = document.getElementById('submit-btn');
+
+            if (isEditMode) {
+                // Admin Mode: Disable everything visually
+                formContainer.classList.add('opacity-50', 'pointer-events-none');
+                title.textContent = 'Select a time slot above';
+                nameInput.disabled = true;
+                emailInput.disabled = true;
+                messageInput.disabled = true;
+                recurringBtn.disabled = true;
+                submitBtn.disabled = true;
+                submitBtn.style.backgroundColor = '#9ca3af'; // gray
+            } else {
+                // Student Mode: Active
+                formContainer.classList.remove('opacity-50', 'pointer-events-none');
+                
+                if (selectedSlot) {
+                    title.textContent = `Complete booking for ${selectedSlot.replace('-', ' at ')}`;
+                    nameInput.disabled = false;
+                    emailInput.disabled = false;
+                    messageInput.disabled = false;
+                    recurringBtn.disabled = false;
+                    submitBtn.disabled = false;
+                    submitBtn.style.backgroundColor = '#e2542b'; // accent
+                } else {
+                    title.textContent = 'Select a time slot above';
+                    nameInput.disabled = true;
+                    emailInput.disabled = true;
+                    messageInput.disabled = true;
+                    recurringBtn.disabled = true;
+                    submitBtn.disabled = true;
+                    submitBtn.style.backgroundColor = '#9ca3af'; // gray
+                }
+            }
+        }
+
+        // Handle Form Submission
+        function handleBook(e) {
+            e.preventDefault();
+            const name = document.getElementById('form-name').value;
+            const email = document.getElementById('form-email').value;
+            const message = document.getElementById('form-message').value;
+
+            if (selectedSlot && name && email) {
+                // Build a nicely formatted email
+                const slotDisplay = selectedSlot.replace('-', ' at ');
+                const recurringText = isRecurring ? 'Yes - every week' : 'No';
+
+                const subject = encodeURIComponent('New Lesson Booking - ' + slotDisplay);
+                const bodyLines = [
+                    '================================',
+                    '  Le French Flair - New Booking',
+                    '================================',
+                    '',
+                    'Time Slot:  ' + slotDisplay,
+                    'Recurring:  ' + recurringText,
+                    '',
+                    'Student Name:   ' + name,
+                    'Student Email:  ' + email,
+                    '',
+                    'Message / Goals:',
+                    (message || '(No message provided)'),
+                    '',
+                    '================================',
+                    'Submitted via lefrenchflair.com'
+                ];
+                const body = encodeURIComponent(bodyLines.join('\n'));
+
+                // Open the default email client with all details pre-filled
+                window.location.href = 'mailto:nicolasgrignon.graphicdesigner@gmail.com?subject=' + subject + '&body=' + body;
+
+                // Add to booked slots
+                bookedSlots.push(selectedSlot);
+
+                // Show success
+                const successMsg = document.getElementById('success-message');
+                successMsg.classList.remove('hidden');
+
+                // Reset form and state
+                selectedSlot = null;
+                document.getElementById('form-name').value = '';
+                document.getElementById('form-email').value = '';
+                document.getElementById('form-message').value = '';
+                if(isRecurring) toggleRecurring(); // Reset to unchecked
+
+                renderCalendar();
+                updateFormState();
+
+                // Hide success message after 4 seconds
+                setTimeout(() => {
+                    successMsg.classList.add('hidden');
+                }, 4000);
+            }
+        }
+
+        // Initialize Application
+        lucide.createIcons();
+        renderCalendar();
+        updateFormState();
+
+    </script>
+</body>
+</html>
