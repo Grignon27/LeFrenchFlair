@@ -201,47 +201,31 @@
 
         .skill-tooltip {
             position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-8px);
-            background-color: rgba(26, 43, 76, 0.95);
-            color: #fbf9f6;
-            padding: 10px 14px;
-            border-radius: 8px;
-            font-size: 13px;
-            line-height: 1.4;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #e2542b;
+            color: #ffffff;
+            padding: 16px;
+            border-radius: 0.75rem;
+            font-size: 14px;
+            line-height: 1.55;
             pointer-events: none;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(226, 84, 43, 0.4);
-            max-width: 200px;
+            z-index: 10;
             white-space: normal;
             text-align: center;
-        }
-
-        .skill-tooltip::after {
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 6px solid transparent;
-            border-top-color: rgba(26, 43, 76, 0.95);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .skill-box:hover .skill-tooltip {
             opacity: 1;
             visibility: visible;
-        }
-
-        @media (max-width: 768px) {
-            .skill-tooltip {
-                max-width: 150px;
-                font-size: 12px;
-            }
         }
 
         /* ========== FORMSPREE SUBMISSION ========== */
@@ -887,11 +871,30 @@
 
         // Application State
         let isEditMode = false;
-        // All slots start available. A slot is only added here once a student
-        // successfully books it (see handleBook), or if the Admin manually
-        // marks it unavailable (see handleSlotClick). Admin can free a slot
-        // again at any time by clicking it in Editor Mode.
-        let bookedSlots = [];
+
+        // ---------- PERSISTENT SLOT STORAGE ----------
+        // bookedSlots is kept in localStorage so that a page refresh (or
+        // closing and reopening the tab) never loses booked appointments.
+        // The ONLY way a slot can be removed is through Admin (Editor) Mode.
+        function loadBookedSlots() {
+            try {
+                return JSON.parse(localStorage.getItem('lefrenchflair_bookedSlots') || '[]');
+            } catch (e) {
+                return [];
+            }
+        }
+        function saveBookedSlots() {
+            try {
+                localStorage.setItem('lefrenchflair_bookedSlots', JSON.stringify(bookedSlots));
+            } catch (e) {
+                console.warn('Could not persist booked slots to localStorage:', e);
+            }
+        }
+
+        // A slot is added here once a student successfully books it (see
+        // handleBook), or when the Admin manually blocks/unblocks a slot
+        // (see handleSlotClick). Only Admin Mode can ever remove a slot.
+        let bookedSlots = loadBookedSlots();
         let selectedSlot = null;
         let isRecurring = false;
 
@@ -1008,6 +1011,7 @@
                 } else {
                     bookedSlots.push(slotId);
                 }
+                saveBookedSlots();  // persist admin change immediately
                 selectedSlot = null;
             } else {
                 // STUDENT MODE: Select for booking
@@ -1182,8 +1186,9 @@
                 })
                 .then(response => {
                     if (response.ok) {
-                        // Success - add to booked slots
+                        // Success - add to booked slots and persist immediately
                         bookedSlots.push(selectedSlot);
+                        saveBookedSlots();
 
                         // Show success message
                         successMsg.classList.remove('hidden');
