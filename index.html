@@ -850,12 +850,12 @@
                             <i data-lucide="phone" class="w-5 h-5 text-theme-accent"></i>
                         </div>
                   (647) 612  0175 </a>
-                    <a href="mailto:nicolasgrignon.graphicdesigner@gmail.com" class="flex items-center gap-3 text-lg font-medium hover:text-theme-accent transition-colors text-theme-navy">
+                    <button onclick="openContactModal()" class="flex items-center gap-3 text-lg font-medium hover:text-theme-accent transition-colors text-theme-navy cursor-pointer bg-transparent border-0 p-0">
                         <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
                             <i data-lucide="mail" class="w-5 h-5 text-theme-accent"></i>
                         </div>
                         Info@lefrenchflair.com
-                    </a>
+                    </button>
                 </div>
             </div>
             
@@ -865,10 +865,191 @@
         </div>
     </footer>
 
+    <!-- =====================================================================
+         CONTACT MODAL – opens when the email address in the footer is clicked.
+         The actual recipient (nicolas.grignon.graphicdesigner@gmail.com) is
+         handled server-side via Formspree and is never exposed in this HTML.
+    ====================================================================== -->
+    <div 
+        id="contact-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="contact-modal-title"
+        style="display:none;"
+        class="fixed inset-0 z-[100] flex items-center justify-center p-4"
+    >
+        <!-- Backdrop -->
+        <div 
+            id="contact-modal-backdrop"
+            onclick="closeContactModal()"
+            class="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        ></div>
+
+        <!-- Panel -->
+        <div class="relative z-10 w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden">
+
+            <!-- Header bar -->
+            <div class="bg-theme-navy px-8 pt-8 pb-6 relative">
+                <button 
+                    onclick="closeContactModal()" 
+                    aria-label="Close"
+                    class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                >
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+                <h2 id="contact-modal-title" class="text-2xl font-serif font-bold text-white">Send a Message</h2>
+                <p class="text-sm text-white/70 mt-1">I'll get back to you as soon as possible.</p>
+            </div>
+
+            <!-- Form body -->
+            <div class="px-8 py-7">
+
+                <!-- Success state (hidden by default) -->
+                <div id="contact-success" class="hidden flex-col items-center text-center py-6 gap-3">
+                    <div class="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mb-2">
+                        <i data-lucide="check-circle" class="w-7 h-7 text-green-600"></i>
+                    </div>
+                    <p class="text-lg font-bold text-theme-navy">Message sent!</p>
+                    <p class="text-gray-500 text-sm">Thanks for reaching out. I'll reply within 24 hours.</p>
+                    <button 
+                        onclick="closeContactModal()"
+                        class="mt-4 px-6 py-2 rounded-full bg-theme-accent text-white font-semibold text-sm hover:bg-[#b8431e] transition-colors"
+                    >Close</button>
+                </div>
+
+                <!-- The form (shown by default) -->
+                <div id="contact-form-wrapper" class="space-y-4">
+                    <div id="contact-error" class="hidden mb-1 p-3 bg-red-50 text-red-700 text-sm rounded-lg flex items-center gap-2">
+                        <i data-lucide="alert-circle" class="w-4 h-4 shrink-0"></i>
+                        <span>Something went wrong. Please try again.</span>
+                    </div>
+                    <div>
+                        <label for="contact-name" class="block text-sm font-bold text-gray-700 mb-1">Your Name</label>
+                        <input 
+                            type="text" 
+                            id="contact-name" 
+                            required 
+                            placeholder="Jean Dupont"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#e2542b] focus:ring-1 focus:ring-[#e2542b] text-sm"
+                        />
+                    </div>
+                    <div>
+                        <label for="contact-email" class="block text-sm font-bold text-gray-700 mb-1">Your Email</label>
+                        <input 
+                            type="email" 
+                            id="contact-email" 
+                            required 
+                            placeholder="jean@example.com"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#e2542b] focus:ring-1 focus:ring-[#e2542b] text-sm"
+                        />
+                    </div>
+                    <div>
+                        <label for="contact-message" class="block text-sm font-bold text-gray-700 mb-1">Message</label>
+                        <textarea 
+                            id="contact-message" 
+                            rows="4" 
+                            required 
+                            placeholder="Tell me what you're looking for…"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#e2542b] focus:ring-1 focus:ring-[#e2542b] text-sm resize-none"
+                        ></textarea>
+                    </div>
+                    <button 
+                        id="contact-submit-btn"
+                        onclick="handleContactSubmit()"
+                        class="w-full py-3 rounded-xl bg-theme-accent hover:bg-[#b8431e] text-white font-bold text-base transition-colors shadow-md"
+                    >
+                        Send Message
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- INTERACTIVE JAVASCRIPT -->
     <script>
         // Set Current Year in Footer
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // =====================================================================
+        // CONTACT MODAL
+        // =====================================================================
+
+        function openContactModal() {
+            var modal = document.getElementById('contact-modal');
+            document.getElementById('contact-success').classList.add('hidden');
+            document.getElementById('contact-success').classList.remove('flex');
+            document.getElementById('contact-form-wrapper').style.display = '';
+            document.getElementById('contact-error').classList.add('hidden');
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-email').value = '';
+            document.getElementById('contact-message').value = '';
+            var btn = document.getElementById('contact-submit-btn');
+            btn.disabled = false;
+            btn.textContent = 'Send Message';
+            btn.classList.remove('opacity-60', 'cursor-not-allowed');
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeContactModal() {
+            document.getElementById('contact-modal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeContactModal();
+        });
+
+        function handleContactSubmit() {
+            var name    = document.getElementById('contact-name').value.trim();
+            var email   = document.getElementById('contact-email').value.trim();
+            var message = document.getElementById('contact-message').value.trim();
+            var btn     = document.getElementById('contact-submit-btn');
+            var errBox  = document.getElementById('contact-error');
+
+            if (!name || !email || !message) {
+                errBox.querySelector('span').textContent = 'Please fill in all fields before sending.';
+                errBox.classList.remove('hidden');
+                return;
+            }
+            errBox.classList.add('hidden');
+
+            btn.disabled = true;
+            btn.classList.add('opacity-60', 'cursor-not-allowed');
+            btn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 inline animate-spin mr-2"></i>Sending…';
+            lucide.createIcons();
+
+            var formData = new FormData();
+            formData.append('name',    name);
+            formData.append('email',   email);
+            formData.append('message', message);
+
+            fetch('https://formspree.io/f/xwvjgrpw', {
+                method:  'POST',
+                body:    formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(function(res) {
+                if (res.ok) {
+                    document.getElementById('contact-form-wrapper').style.display = 'none';
+                    var success = document.getElementById('contact-success');
+                    success.classList.remove('hidden');
+                    success.classList.add('flex');
+                    lucide.createIcons();
+                } else {
+                    throw new Error('Formspree error');
+                }
+            })
+            .catch(function() {
+                btn.disabled = false;
+                btn.classList.remove('opacity-60', 'cursor-not-allowed');
+                btn.textContent = 'Send Message';
+                errBox.querySelector('span').textContent = 'Something went wrong. Please try again.';
+                errBox.classList.remove('hidden');
+            });
+        }
 
         // Application State
         let isEditMode = false;
